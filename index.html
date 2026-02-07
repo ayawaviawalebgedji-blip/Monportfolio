@@ -4,118 +4,219 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio | Reine AWALEGBEDJI</title>
+
   <style>
+    :root {
+      --bg: #0f172a;
+      --text: #e5e7eb;
+      --card: #020617;
+      --primary: #6366f1;
+      --secondary: #22d3ee;
+    }
+
+    body.light {
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --card: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      transition: background .4s, color .4s;
     }
+
     header {
       padding: 4rem 2rem;
       text-align: center;
-      background: linear-gradient(135deg, #2563eb, #9333ea);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      animation: fadeDown 1s ease;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: .5rem;
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(2,6,23,.8);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
     }
-    header p {
-      font-size: 1.1rem;
-      opacity: .95;
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: .95rem;
+      position: relative;
     }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: width .3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav button {
+      background: none;
+      border: 1px solid var(--secondary);
+      color: var(--secondary);
+      padding: .4rem .8rem;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
     section {
       padding: 3rem 2rem;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
+      animation: fadeUp 1s ease;
     }
-    h2 {
-      color: #60a5fa;
-      margin-bottom: 1rem;
-    }
-    .skills, .projects {
+
+    h2 { color: var(--secondary); }
+
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
     }
+
     .card {
-      background: #020617;
+      background: var(--card);
       padding: 1.5rem;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,.3);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transition: transform .3s, box-shadow .3s;
     }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,.35);
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
-      background: #020617;
-      font-size: .9rem;
-      opacity: .8;
+      opacity: .7;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
+<nav>
+  <strong>Reine.dev</strong>
+  <div style="display:flex;gap:1rem;align-items:center;">
+    <a href="#about">À propos</a>
+    <a href="#skills">Compétences</a>
+    <a href="#projects">Projets</a>
+    <a href="#contact">Contact</a>
+    <button onclick="toggleTheme()">🌙 / ☀️</button>
+  </div>
+</nav>
+
 <header>
+  <img src="photo-reine.jpg" alt="Photo de Reine" style="width:140px;height:140px;border-radius:50%;border:4px solid white;margin-bottom:1rem;object-fit:cover;" />
   <h1>Reine AWALEGBEDJI</h1>
-  <p>Étudiante en informatique de gestion • Développement web • Bases de données</p>
+  <p>Étudiante en informatique de gestion • Web • Bases de données • IA</p>
 </header>
 
-<section>
+<section id="about">
   <h2>À propos</h2>
   <p>
-    Étudiante en informatique de gestion, candidate à la poursuite d’études au Canada.
-    Passionnée par le développement web, les bases de données et l’utilisation méthodique
-    de l’intelligence artificielle pour apprendre, structurer et créer.
+    Étudiante en informatique de gestion, orientée développement web et bases de données.
+    J’utilise l’intelligence artificielle comme outil d’apprentissage, de structuration
+    et de productivité. Je construis progressivement des projets concrets et techniques.
   </p>
 </section>
 
-<section>
+<section id="skills">
   <h2>Compétences</h2>
-  <div class="skills">
+  <div class="grid">
     <div class="card">HTML5 • CSS3 • Responsive design</div>
-    <div class="card">JavaScript (bases) • PHP (bases)</div>
-    <div class="card">UML • Génie logiciel • Algorithmes</div>
-    <div class="card">Bases de données • Analyse de données</div>
-    <div class="card">Systèmes d’exploitation • Réseaux</div>
-    <div class="card">IA pour apprentissage et productivité</div>
+    <div class="card">JavaScript (DOM, events)</div>
+    <div class="card">PHP (bases) • logique serveur</div>
+    <div class="card">UML • Génie logiciel</div>
+    <div class="card">Bases de données • Analyse</div>
+    <div class="card">IA appliquée à l’apprentissage</div>
   </div>
 </section>
 
-<section>
-  <h2>Projets</h2>
-  <div class="projects">
+<section id="projects">
+  <h2>Projets techniques</h2>
+  <div class="grid">
+
     <div class="card">
-      <h3>Portfolio personnel</h3>
-      <p>Site web responsive présentant mon profil, mes compétences et mes objectifs académiques.</p>
-      <p><strong>Technos :</strong> HTML, CSS</p>
+      <h3>Portfolio interactif</h3>
+      <p>Site personnel avec thème sombre/clair, animations et navigation fluide.</p>
+      <p><strong>Tech :</strong> HTML, CSS, JavaScript</p>
     </div>
+
     <div class="card">
-      <h3>Mini site vitrine – Artisanat crochet</h3>
-      <p>Présentation de créations artisanales avec galerie et description des produits.</p>
-      <p><strong>Technos :</strong> HTML, CSS</p>
+      <h3>Gestion des étudiants</h3>
+      <p>Modélisation UML + logique de gestion (ajout, suppression, notes).</p>
+      <p><strong>Tech :</strong> UML, algorithmique, C / Java (conceptuel)</p>
     </div>
+
     <div class="card">
-      <h3>Gestion des étudiants (projet académique)</h3>
-      <p>Modélisation UML et logique de gestion des étudiants et des notes.</p>
-      <p><strong>Outils :</strong> UML, algorithmique</p>
+      <h3>Mini dashboard académique</h3>
+      <p>Affichage dynamique de données (statistiques, moyennes, tableaux).</p>
+      <p><strong>Tech :</strong> JavaScript, HTML, CSS</p>
     </div>
+
     <div class="card">
-      <h3>Utilisation de l’IA pour les révisions</h3>
-      <p>Méthode personnelle d’organisation et d’optimisation des révisions avec l’IA.</p>
-      <p><strong>Approche :</strong> IA appliquée à l’éducation</p>
+      <h3>IA pour la productivité étudiante</h3>
+      <p>Système personnel d’organisation des révisions et apprentissages.</p>
+      <p><strong>Approche :</strong> IA + méthodologie</p>
     </div>
+
   </div>
 </section>
 
-<section>
+<section id="contact">
   <h2>Contact</h2>
   <p>Email : ayawaviawalebgedji@gmail.com</p>
 </section>
 
 <footer>
-  © 2025 • Reine AWALEGBEDJI – Portfolio
+  © 2025 • Reine AWALEGBEDJI
 </footer>
+
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle('light');
+  }
+
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(link.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
